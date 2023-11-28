@@ -89,6 +89,8 @@ hr {
 @media (max-width: 680px) {
   .archive {
     display: flex;
+    max-width: 50%;
+    max- height: auto;
     flex-direction: column;
   }
   .article {

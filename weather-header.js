@@ -17,54 +17,63 @@ fetch(URL)
 
     // handles the wind chill factor
     let T = (document.getElementById("current-temp").textContent = Math.floor(
-      jsObject.main.temp
+      ((jsObject.main.temp - 273.15) * 9) / 5 + 32
     ));
 
     let W = (document.getElementById("current-windSpeed").textContent =
       Math.ceil(jsObject.wind.speed));
     const wc = 35.74 + 0.6215 * T - 35.75 * W ** 0.16 + 0.4275 * T * W ** 0.16;
     document.getElementById("current-windChill").textContent = Math.floor(wc);
-    // console.log(wc);
+    console.log(wc);
   });
+
 const newsURL = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4e36670664a349769b208dfe96ba3e32`;
 fetch(newsURL)
   .then((response) => response.json())
   .then((jsObject) => {
     console.log(jsObject);
+    //header
+    document.getElementById("header-article").textContent =
+      jsObject.articles[0].title;
+    document.getElementById("header-desc").textContent =
+      jsObject.articles[0].description;
+    document.getElementById("header-img").src = jsObject.articles[0].urlToImage;
+    let archive = document.getElementById("article-link-1");
+    archive.setAttribute("href", jsObject.articles[0].url);
 
     document.getElementById("article-link-1").textContent =
-      jsObject.articles[0].title;
+      jsObject.articles[1].title;
     document.getElementById("article-desc-1").textContent =
-      jsObject.articles[0].description;
+      jsObject.articles[1].description;
     document.getElementById("article-img-1").src =
-      jsObject.articles[0].urlToImage;
+      jsObject.articles[1].urlToImage;
     let title = document.getElementById("article-link-1");
-    title.setAttribute("href", jsObject.articles[0].url);
+    title.setAttribute("href", jsObject.articles[1].url);
 
     document.getElementById("article-link-2").textContent =
-      jsObject.articles[1].title;
+      jsObject.articles[2].title;
     document.getElementById("article-desc-2").textContent =
-      jsObject.articles[1].description;
+      jsObject.articles[2].description;
     document.getElementById("article-img-2").src =
-      jsObject.articles[1].urlToImage;
+      jsObject.articles[2].urlToImage;
     let title2 = document.getElementById("article-link-2");
-    title2.setAttribute("href", jsObject.articles[1].url);
+    title2.setAttribute("href", jsObject.articles[2].url);
 
     document.getElementById("article-link-3").textContent =
-      jsObject.articles[2].title;
+      jsObject.articles[10].title;
     document.getElementById("article-desc-3").textContent =
-      jsObject.articles[2].description;
+      jsObject.articles[10].description;
     document.getElementById("article-img-3").src =
-      jsObject.articles[2].urlToImage;
+      jsObject.articles[10].urlToImage;
     let title3 = document.getElementById("article-link-3");
-    title3.setAttribute("href", jsObject.articles[2].url);
+    title3.setAttribute("href", jsObject.articles[10].url);
 
     document.getElementById("article-link-4").textContent =
-      jsObject.articles[3].title;
+      jsObject.articles[4].title;
     document.getElementById("article-desc-4").textContent =
-      jsObject.articles[3].description;
+      jsObject.articles[4].description;
     document.getElementById("article-img-4").src =
-      jsObject.articles[3].urlToImage;
+      jsObject.articles[4].urlToImage;
     let title4 = document.getElementById("article-link-4");
-    title4.setAttribute("href", jsObject.articles[3].url);
+    title4.setAttribute("href", jsObject.articles[4].url);
   });
